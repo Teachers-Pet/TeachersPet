@@ -61,7 +61,6 @@ require('./routes/apiRoutes')(app);
 
   // DEV ONLY!!: 
   // use code below to force true if prevented by sequelize error 
-  //^^ what Eyad is trying to say is that if you run the code origanally and get an error, comment out line 69 and below and uncomment line 63-67 and run,IT STILL WILL NOT WORK once done re-comment out line 63-67 and un-comment out line 69 and below, re-run and it will work! yay!! 
   // db
   //   .sequelize
   //   .query('SET FOREIGN_KEY_CHECKS = 0', null, {raw: true})
