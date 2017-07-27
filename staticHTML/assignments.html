@@ -68,26 +68,9 @@
                 <div class="row" id="list">
                     <div class="col s12">
                         <ul id="allAssignments">
-                            <li>
-                                <div class="row">
-                                    <div class="col s6">
-                                        example
-                                    </div>
-                                    <div class="col s6">
-                                    <i class="tiny material-icons delete-icon">assignment_turned_in</i>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <div class="col s6">
-                                        example
-                                    </div>
-                                    <div class="col s6">
-                                    <i class="tiny material-icons delete-icon">assignment_turned_in</i>
-                                    </div>
-                                </div>
-                            </li>                        </ul>
+                            <li>example</li>
+                            <li>example</li>
+                        </ul>
                     </div>
                 </div>            
             </div>
@@ -110,7 +93,7 @@
 <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="assets/js/materialize.js"></script>
-    <!-- <script src="assets/js/materialize.min.js"></script> -->
+    <script src="assets/js/materialize.min.js"></script>
     <script type="text/javascript">
       
     $(document).ready(function () {
@@ -122,34 +105,19 @@
         $('.button-collapse').sideNav('hide');
         // form select
         $('select').material_select();
+    });
 
+    var assignmentList = [];
+    var listItem = $("<li>");
+
+    $.get("/api/assignments").then(function(data){
         // show already saved assignments on the page
-        function listDisplay(data) {
-
-            var divRow;
-            var divCol1;
-            var divCol2;
-            var icon;
-            var listItem;
-
-            for (var i = 0; i < data.length; i++) {
-
-                divRow = $("<div class='row'>");
-                divCol1 = $("<div class='col s6'>");
-                divCol2 = $("<div class='col s6'>");
-                icon = $("<i class='tiny material-icons delete-icon'>assignment_turned_in</i>");
-                listItem = $("<li>");
-
-                divCol1.text(data[i].assignName);
-                divCol2.append(icon);
-                divRow.append(divCol1, divCol2);
-                listItem.append(divRow);
-
-                $("#allAssignments").append(listItem);
-            }
+        for (var i = 0; i < data.length; i++) {
+            listItem.text(data[i].assignName);
+            $("#allAssignments").append(listItem);
+            // assignmentList.push(data[i].assignName);
         }
-
-        $.get("/api/assignments").then(listDisplay(data));
+    });
 
     // function getTeacher() {
     //     var userLoggedInId = "";
@@ -161,28 +129,28 @@
     //     });
     // }
 
-        // Submits new assignment to the database
-        function saveAssignment(assignment) {
-            $.post("/api/assignments", assignment, function() { 
-            });
-            location.href = "/assignments";
-        }
-                
-        $("#save-assignment").on("click", function(event) {
-
-            event.preventDefault();
-            var name = $("#assignment-name").val().trim();
-            // checks to make sure form fields are not empty
-            if (!name) {
-                $(".alertUser").text("Please enter an assignment name.");
-                return;
-            } 
-            //Create a new object to go into the database
-            var newAssignment = {
-                assignName: name,
-            };
-            saveAssignment(newAssignment);
+    // Submits new assignment to the database
+    function saveAssignment(assignment) {
+        $.post("/api/assignments", assignment, function() { 
         });
+        location.href = "/assignments";
+    }
+            
+    $("#save-assignment").on("click", function(event) {
+
+        event.preventDefault();
+        var name = $("#assignment-name").val().trim();
+
+        // checks to make sure form fields are not empty
+         if (!name) {
+            $(".alertUser").text("Please enter an assignment name.");
+            return;
+        } 
+        //Create a new object to go into the database
+        var newAssignment = {
+            assignName: name,
+        };
+        saveAssignment(newAssignment);
     });
     </script>
 </body>
