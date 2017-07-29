@@ -16,6 +16,16 @@
     margin-top: -25px;
 }
 
+.picker {
+   font-size: 12px;
+   text-align: left;
+   line-height: 0;
+}
+
+.picker__date-display {
+   line-height: 1.3;
+}
+
 .jumbotron {
     margin-top: -30px;
     background-image: url('../images/banner.png');
