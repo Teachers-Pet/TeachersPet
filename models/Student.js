@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   Students.associate = function(models) {
-    Students.belongsTo(models.Teacher, {
+    Students.belongsTo(models.Teachers, {
       onDelete: "cascade"
     });
     Students.hasMany(models.Grades, {

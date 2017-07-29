@@ -8,8 +8,8 @@
   <!-- CSS and fonts -->
   <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
@@ -18,7 +18,7 @@
   <!-- Dropdown Structure -->
   <nav class="teal lighten-1" role="navigation">
     <div class="nav-wrapper container">
-      <img src="./assets/images/globe.png" width="50px" class="globe">
+      <!-- <img src="./images/globe.png" width="50px" class="globe"> -->
       <a href="/menu" class="brand-logo">Teacher's Pet</a>
       <!-- Dropdown Trigger -->
       <ul class="right hide-on-med-and-down">
@@ -44,7 +44,7 @@
         <h4>Attendance</h4>
       </div>
     </div>
-
+<!--body-ish  -->
     <div class='row center'>
       <div class='col s6'>
         <ul id="append-here" className="collection">
@@ -74,10 +74,11 @@
 
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="assets/js/materialize.js"></script>
-    <script src="assets/js/materialize.min.js"></script>
+    <script src="/js/materialize.js"></script>
+    <script src="js/materialize.min.js"></script>
 
     <script type="text/javascript">
+    
       $(document).ready(function () {
         getTeacher();
 
@@ -89,23 +90,26 @@
 
 
         function displayStudents(teacher) {
-          var teacher = teacher; 
+
+          var teacherEmail = {
+              email: "jen@testteacher.com"
+          };
           console.log(teacher);
-          //   if (teacherID) {
-          //     // code to show data on the page
-          //     for (var i = 0; i < data.length; i++) {
+              $.post('/api/students', teacherEmail).then(function(data) {
+  console.log(data); 
+         // code to show data on the page
+              for (var i = 0; i < data.length; i++) {
+                var listItem = $("<li>");
 
-          //       var listItem = $("<li>");
+                var studentInfo = data[i]["Students.name"];
+                listItem.append(`<h2>${studentInfo}</h2>`);
+                $("#append-here").append(listItem);
+              }
+            });
+        } 
 
-          //       var studentInfo = ``
-          //       listItem.append(studentInfo);
-          //       $("#students").append(listItem);
-          //     }
-          //   }
-        }
-        $.post('/api/students', teacher).then(displaystudents(data));
-        console.log(data); 
       });
+    
 
     </script>
 </body>

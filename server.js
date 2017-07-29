@@ -174,7 +174,7 @@ db.sequelize.sync({
 }).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
-    db.Teacher.create({
+    db.Teachers.create({
       name: 'Jen',
       email: 'jen@testteacher.com',
       password: 'testpass',
