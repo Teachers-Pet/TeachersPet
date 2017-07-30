@@ -1,1 +1,23 @@
-<h1> Header goes here</h1>
+<!-- Navigation -->
+<!-- Dropdown Structure -->
+<header>
+  <nav class="teal lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <img src="./assets/images/globe.png" width="50px" class="globe">
+      <a href="/menu" class="brand-logo">Teacher's Pet</a>
+      <!-- Dropdown Trigger -->
+      <ul class="right hide-on-med-and-down">
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/logout">Log Out</a></li>
+      </ul>
+    </div>
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="/assignments">Assignments</a></li>
+      <li><a href="/attendance">Attendance</a></li>
+      <li class="divider"></li>
+      <li><a href="/class">Student Summary</a></li>
+    </ul>
+  </nav>
+</header>

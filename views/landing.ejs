@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Teacher's Pet</title>
+    <!-- CSS and fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" /> 
+</head>
+
+<body class="home">
+    <div class="centerContentParent">
+		<div class="centerContentChild login-buttons center">
+            <h1 id="home-header">Teacher's Pet</h1>
+            <hr class="style17">
+            <h5>An easy tool to manage your class!</h5>
+			<!-- LOGIN BUTTONS -->
+            <a href="#modal-login" class="waves-effect waves-light btn  light-blue lighten-3">Log In</a>
+            <a href="#register-modal" class="waves-effect waves-light btn light-blue lighten-3">Register</a>
+		</div>
+	</div>
+ 
+    <!-- Modal for Logging in -->
+    <div id="modal-login" class="modal modal-fixed-footer">
+        <div class="modal-content center">
+            <h4>Log In</h4>
+            
+            <form id="signin" name="signin" method="post" action="/signin">
+                <!--EMAIL-->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input name="email" type="email" class="validate"></input>
+                        <label for="email">Email:</label>
+                    </div>
+                </div>
+                <!--PASSWORD-->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input name="password" type="password" class="validate">
+                        <label for="password">Password:</label>
+                    </div>
+                </div>
+            <!-- </form> -->
+        </div>
+        <div class="modal-footer">
+            <!-- FORM SUBMIT BUTTON-->
+            <button id="signinbutton" class="btn waves-effect waves-light light-blue lighten-3"
+            type="submit" value="Sign In">Log In</button></form>
+        
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
+
+    <!-- Modal for Registering -->
+    <div id="register-modal" class="modal modal-fixed-footer">
+        <div class="modal-content center">
+            <h4>Register</h4>
+            <form id="signup" name="signup" method="post" action="/signup">
+               <!--Name-->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input name="name" type="text" class="validate newuser"></input>
+                        <label for="name">Name:</label>
+                    </div>
+                </div>                       
+                <!--Email-->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input name="email" type="email" class="validate newuser"></input>
+                        <label for="email">Email:</label>
+                    </div>
+                </div>
+                <!--Password-->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input name="password" type="password" class="newuser validate">
+                        <label for="password">Password:</label>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button id="signupbutton" class="btn waves-effect waves-light light-blue lighten-3"
+            type="submit" value="Sign Up">Register</button></form>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
+</body>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="assets/js/materialize.min.js"></script>
+<script type="text/javascript">
+    // initialize modals
+    $(document).ready(function() {
+        $('.modal').modal();
+    });
+</script>
+</html>

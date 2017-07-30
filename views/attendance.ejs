@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
@@ -8,35 +7,12 @@
   <!-- CSS and fonts -->
   <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" />
+  <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
 </head>
-
 <body>
-
-  <!-- Navigation -->
-  <!-- Dropdown Structure -->
-  <nav class="teal lighten-1" role="navigation">
-    <div class="nav-wrapper container">
-      <!-- <img src="./images/globe.png" width="50px" class="globe"> -->
-      <a href="/menu" class="brand-logo">Teacher's Pet</a>
-      <!-- Dropdown Trigger -->
-      <ul class="right hide-on-med-and-down">
-        <li><a class="dropdown-button" href="/menu" data-activates="dropdown1">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
-      </ul>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/logout">Log Out</a></li>
-      </ul>
-    </div>
-    <ul id="dropdown1" class="dropdown-content">
-      <li><a href="../assignments.html">Assignments</a></li>
-      <li><a href="../attendance.html">Attendance</a></li>
-      <li class="divider"></li>
-      <li><a href="../classSummary.html">Student Summary</a></li>
-    </ul>
-  </nav>
-
-
+  <%- include partials/header.ejs %>
+ 
   <div class="container" id="attendance-container">
     <!-- HEADER   -->
     <div class="row center">
@@ -44,26 +20,18 @@
         <h4>Attendance</h4>
       </div>
     </div>
-<!--body-ish  -->
+    <!--body-ish  -->
     <div class='row center'>
       <div class='col s6'>
         <ul id="append-here" className="collection">
-
       </div>
       <div class='col s6'>
         <h2> I am split in half </h2>
       </div>
     </div>
-
-
-
-
-
-
     <!-- Footer -->
     <footer class="page-footer orange">
       <div class="container" id="footer-filler">
-
       </div>
       <div class="footer-copyright">
         <div class="container center">
@@ -71,47 +39,8 @@
         </div>
       </div>
     </footer>
-
-
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/materialize.js"></script>
-    <script src="js/materialize.min.js"></script>
-
-    <script type="text/javascript">
-    
-      $(document).ready(function () {
-        getTeacher();
-
-        function getTeacher() {
-          $.get("/api/teacher_data").then(function (teacher) {
-            displayStudents(teacher);
-          })
-        }
-
-
-        function displayStudents(teacher) {
-
-          var teacherEmail = {
-              email: "jen@testteacher.com"
-          };
-          console.log(teacher);
-              $.post('/api/students', teacherEmail).then(function(data) {
-  console.log(data); 
-         // code to show data on the page
-              for (var i = 0; i < data.length; i++) {
-                var listItem = $("<li>");
-
-                var studentInfo = data[i]["Students.name"];
-                listItem.append(`<h2>${studentInfo}</h2>`);
-                $("#append-here").append(listItem);
-              }
-            });
-        } 
-
-      });
-    
-
-    </script>
+    <script src="/assets/js/materialize.min.js"></script>
+    <script src"/assets/js/attendance.js" type="text/javascript"></script>
 </body>
-
 </html>
