@@ -6,20 +6,21 @@ module.exports = function(app) {
   app.use(bodyParser.json());
 
   //route for retrieving all students
-  app.get("/api/students/:id", function(req, res) {
+  app.get('/api/students/:id', function(req, res) {
     var id = req.params.id;
-    db.Students.findAll({
-      where: {TeacherId: id},
-    }).then(function(results) { 
-      res.json(results);
-    });
+    db.Students
+      .findAll({
+        where: { TeacherId: id }
+      })
+      .then(function(results) {
+        res.json(results);
+      });
   });
 
   app.post('/api/students', function(req, res) {
-    db.Students.create(req.body)
-      .then(function(students) {
-        res.json(students);
-      });
+    db.Students.create(req.body).then(function(students) {
+      res.json(students);
+    });
   });
 
   //route for retrieving all assignments
