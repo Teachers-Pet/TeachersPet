@@ -5,7 +5,7 @@ module.exports = function(app) {
   // parse application/json
   app.use(bodyParser.json());
 
-  //route for retrieving all students
+  //route for retrieving all students associated with a specific teacher
   app.get('/api/students/:id', function(req, res) {
     var id = req.params.id;
     db.Students
@@ -23,12 +23,25 @@ module.exports = function(app) {
     });
   });
 
+   //route for retrieving all students in general
+  app.get('/api/students/', function(req, res) {
+    var id = req.params.id;
+    db.Students
+      .findAll({
+      })
+      .then(function(results) {
+        res.json(results);
+      });
+  });
+
   //route for retrieving all assignments
   app.get('/api/assignments', function(req, res) {
     db.Assignments.findAll({}).then(function(results) {
       res.json(results);
     });
   });
+
+
 
   // route for saving a new assignment
   app.post('/api/assignments', function(req, res) {

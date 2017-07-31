@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
@@ -45,50 +46,63 @@
         </div>
 
         <!-- ALL STUDENTS LISTED HERE  -->
-        <!-- React Component -->
-        <div id='main-mount'>
-          <div>
-            <%- reactOutput -%>
-          </div>
-        </div>
-      
-      <!-- BOTTOM PANELS  -->
-      <div class="row">
-        <!-- PANEL WITH DOCUMENTS -->
-        <div class="col s6">
-          <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title"><h5>Documents</h5></span>
-              <ul id='append-urls-here'>
-                         
-              </ul>
-            </div>
-            <div class="card-action">
-              <a href="#document-modal">Upload a Document</a>
-              <a href="#document-modal" class="right">
+        <div class="row">
+          <div class="col s12 student-list-pnl">
+            <div class="card-panel white">
+              <div class="card-content black-text">
+                <h5 class="center">Students
+                  <!-- <a href="#add-student-modal" 
+            class="btn-floating btn-tiny waves-effect waves-light 
+            orange lighten-2 student-add-btn"><i class="tiny material-icons">add</i></a> -->
+                  <a href="#add-student-modal" class="">
+            <i class="material-icons orange-text">add_circle</i></a>
+                </h5>
+                <!-- React Component -->
+                <div id='main-mount'>
+                  <div>
+                    <%- reactOutput -%>
+                  </div>
+                </div>
+
+                <!-- BOTTOM PANELS  -->
+                <div class="row">
+                  <!-- PANEL WITH DOCUMENTS -->
+                  <div class="col s6">
+                    <div class="card white">
+                      <div class="card-content black-text">
+                        <span class="card-title"><h5>Documents</h5></span>
+                        <ul id='append-urls-here'>
+
+                        </ul>
+                      </div>
+                      <div class="card-action">
+                        <a href="#document-modal">Upload a Document</a>
+                        <a href="#document-modal" class="right">
               <i class="material-icons">add_circle</i></a>
-            </div>
-          </div>
-        </div>
-        <!--PANEL WITH EVENTS / ANNOUNCEMENTS  -->
-        <div class="col s6">
-          <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title"><h5>Calendar</h5></span>
-              <ul>
-                <li>Test On Friday</li>
-                <li>Quiz on Tuesday</li>
-              </ul>
-            </div>
-            <div class="card-action">
-              <a href="#add-event-modal">Add an Event</a>
-              <a href="#add-event-modal" class="right">
+                      </div>
+                    </div>
+                  </div>
+                  <!--PANEL WITH EVENTS / ANNOUNCEMENTS  -->
+                  <div class="col s6">
+                    <div class="card white">
+                      <div class="card-content black-text">
+                        <span class="card-title"><h5>Calendar</h5></span>
+                        <ul>
+                          <li>Test On Friday</li>
+                          <li>Quiz on Tuesday</li>
+                        </ul>
+                      </div>
+                      <div class="card-action">
+                        <a href="#add-event-modal">Add an Event</a>
+                        <a href="#add-event-modal" class="right">
               <i class="material-icons">add_circle</i></a>
-            </div>
-          </div>
-        </div>
-      </div><!-- end of row -->
-      </div><!-- end of container -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end of row -->
+              </div>
+              <!-- end of container -->
     </main>
     <!-- Footer -->
     <footer class="page-footer orange">
@@ -103,21 +117,21 @@
     <!-- STUDENT SUMMARY modal -->
     <div id="student-summary-modal" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <div class="row center">
+        <div class="row center pic-row">
           <!--Student Pic-->
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png"
-            alt="">
+          
         </div>
         <!--Name and grade-->
-        <div class="row center">
-          <h4>Student Name</h4>
+        <div class="row center name-row">
+        <!-- add student name -->
+        </div>
+
+        <!-- email row -->
+        <div class="row center email-row">
+          <!--Student email-->
         </div>
         <div class="row">
-          <div class="col s6">
-            <p>Cumulative Grade: 92</p>
-            <p>Email: henrietta@yahoo.com</p>
-            <p>Number of Absences: 2</p>
-          </div>
+         
           <div class="col s6 right-align">
             <div class="row">
               <a href="/api/student/email" class="waves-effect waves-light btn ">Email Student</a>
@@ -249,5 +263,5 @@
     <script src='/assets/js/classSummary.js'></script>
     <script src='/assets/js/main.js'></script>
 </body>
-</html>
 
+</html>
