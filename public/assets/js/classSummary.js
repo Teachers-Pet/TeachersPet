@@ -38,35 +38,29 @@ $(document).ready(function() {
 
     // access table of ALL students
     $.ajax({
-        url: "/api/students/",
-        method: "GET",
-      })
+      url: "/api/students/",
+      method: "GET"
+    }).done(function(data) {
+      console.log(data);
+      console.log(index);
 
-      .done(function(data) {
+      var students = data;
+      var imgUrl = students[index].imgUrl;
+      var studentName = students[index].name;
+      var studentEmail = students[index].email;
 
-        console.log(data);
-        console.log(index);
+      // add student information to modal
+      $(".pic-row").html("<img class='modal-img' src='" + imgUrl + "'>");
+      $(".name-row").html("<h2>" + studentName + "</h2>");
+      $(".email-row").html("<h5>" + studentEmail + "</h5>");
 
-        var students = data;
-        var imgUrl = students[index].imgUrl;
-        var studentName = students[index].name;
-        var studentEmail = students[index].email;
-
-        // add student information to modal
-        $(".pic-row").html("<img class='modal-img' src='" + imgUrl + "'>");
-        $(".name-row").html("<h2>" + studentName + "</h2>");
-        $(".email-row").html("<h5>" + studentEmail + "</h5>");
-
-        console.log(studentInfo);
-
-      })
-      // opem modal
-    $("#student-summary-modal").modal('open');
-
+      console.log(studentInfo);
+    });
+    // opem modal
+    $("#student-summary-modal").modal("open");
   });
 
   // --------end of pop-up modal with stuent summary code-----------
-
 
   //-------add student button-----------
   $("#add-student-btn").on("click", function(event) {
@@ -77,6 +71,51 @@ $(document).ready(function() {
       TeacherId: id
     };
     // send an AJAX POST-request with jQuery
+    $.post("/api/students", newStudent)
+      // on success, run this callback
+      .done(function(data) {
+        alert("Adding student...");
+      });
+
+    // empty each input box by replacing the value with an empty string
+    $("#first-name").val("");
+    $("#last-name").val("");
+    $("#email").val("");
+    location.href = "/class";
+  });
+  // store logged in teacher's id
+  var id, teacherName;
+
+  $.get("/api/teacher_data", function(data) {
+    teacherName = data.name;
+    id = data.id;
+    $("#teacher-name").text(teacherName + "'s");
+  });
+  // initialize materialize
+  $(".modal").modal();
+  $(".button-collapse ").sideNav();
+  $(".button-collapse").sideNav("hide");
+  $(".dropdown-button").dropdown();
+
+  // for adding events modal (models not complete for this feature)
+  $(".datepicker").pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: "Today",
+    clear: "Clear",
+    close: "Ok",
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
+  // add student to the class
+  $("#add-student-btn").on("click", function(event) {
+    var newStudent = {
+      name: $("#first-name").val().trim() + $("#last-name").val().trim(),
+      imgUrl: $("#img-url").val().trim(),
+      email: $("#email").val().trim(),
+      TeacherId: id
+    };
+
     $.post("/api/students", newStudent)
       // on success, run this callback
       .done(function(data) {

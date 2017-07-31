@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
@@ -7,28 +8,47 @@
   <!-- CSS and fonts -->
   <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" />
-  <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+  <link href="./assets/css/materialize.min.css" type="text/css" rel="stylesheet" />
+  <link href="./assets/css/style.css" type="text/css" rel="stylesheet" />
 </head>
+
 <body>
   <%- include partials/header.ejs %>
- 
-  <div class="container" id="attendance-container">
-    <!-- HEADER   -->
-    <div class="row center">
-      <div class="col s12">
-        <h4>Attendance</h4>
+
+   <!--body  -->
+    <main>
+      <div class="container" id="attendance-container">
+        <div class="row center">
+          <div class="col s12">
+            <h4>Attendance</h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <form class="col s12">
+
+            <div class='row'>
+              <div class='col s12'>
+                <p> Enter the date: </p>
+                <div class='input-field inline'>
+                  <input type='text' class='datepicker' id='attendance-date' />
+                  <label for="date">Date:</label>
+                </div>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='col s12'>
+                <ul id="append-here" class="collection">
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div>
+        
       </div>
-    </div>
-    <!--body-ish  -->
-    <div class='row center'>
-      <div class='col s6'>
-        <ul id="append-here" className="collection">
-      </div>
-      <div class='col s6'>
-        <h2> I am split in half </h2>
-      </div>
-    </div>
+    </main>
+
     <!-- Footer -->
     <footer class="page-footer orange">
       <div class="container" id="footer-filler">
@@ -39,8 +59,12 @@
         </div>
       </div>
     </footer>
+
+    <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/assets/js/materialize.min.js"></script>
-    <script src"/assets/js/attendance.js" type="text/javascript"></script>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="assets/js/attendance.js" type="text/javascript"></script>
 </body>
+
 </html>
+

@@ -1,9 +1,8 @@
-"use strict";
-const express = require("express");
-const path = require("path");
-const logger = require("morgan");
-const bodyParser = require("body-parser");
-const methodOverride = require("method-override");
+'use strict';
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 //import bcrypt (which we need to secure seed data password)
 var bCrypt = require("bcrypt-nodejs");
 // Authentication dependencies
@@ -47,19 +46,15 @@ app.use(
 // parse application/json
 app.use(bodyParser.json());
 
-// Override with POST having ?_method=DELETE
-app.use(methodOverride("_method"));
-
 //Routes
 //=================================================
-// require('./routes/htmlRoutes')(app);
 
 // Authentication routes
 require("./routes/authRoutes.js")(app, passport);
 // load passport strategies
 require("./config/passport/passport.js")(passport, db.Teachers);
 //load amazon web service route
-// require("./routes/upload")(app);
+// require('./routes/upload')(app);
 // load api routes
 require("./routes/apiRoutes")(app);
 
@@ -93,31 +88,25 @@ db.sequelize
           db.Students
             .bulkCreate([
               {
-                name: "Eyad Drakefan",
-                email: "eyad@unc.edu",
+                name: 'Eyad Qassem',
+                email: 'eyad@unc.edu',
                 imgUrl:
                   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
                 TeacherId: 1
               },
               {
-                name: "Henrietta likesDraketoo",
-                email: "henrietta@unc.edu",
+                name: 'Henrietta Sharpe',
+                TeacherId: 1
+                name: 'India Evans',
+                email: 'india@unc.edu',
                 imgUrl:
                   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
                 TeacherId: 1
               },
               {
-                name: "India Arie",
-                email: "india@unc.edu",
-                imgUrl:
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
-                TeacherId: 1
-              },
-              {
-                name: "Brittni Beyoncefan",
-                email: "india@unc.edu",
-                imgUrl:
-                  "http://img.usmagazine.com/social/beyonce-d5c55b42-2de9-48f4-84c4-bbd89bb622c8.jpg",
+                name: 'Brittni Wright',
+                email: 'india@unc.edu',
+                imgUrl: 'http://img.usmagazine.com/social/beyonce-d5c55b42-2de9-48f4-84c4-bbd89bb622c8.jpg',
                 TeacherId: 1
               }
             ])
@@ -154,6 +143,37 @@ db.sequelize
                       }
                     ])
                     .then(function(value) {
+                      // db.Dates
+                      //   .create({
+                      //     schoolDates: Date.now()
+                      //   })
+                      //   .then(function(currDate) {
+                      //     db.Attendance
+                      //       .bulkCreate([
+                      //         {
+                      //           presence: 'Absent',
+                      //           DateId: 1,
+                      //           StudentId: 1
+                      //         },
+                      //         {
+                      //           presence: 'Tardy-Excused',
+                      //           DateId: 1,
+                      //           StudentId: 2
+                      //         },
+                      //         {
+                      //           presence: 'Tardy-Unexcused',
+                      //           DateId: 1,
+                      //           StudentId: 3
+                      //         },
+                      //         {
+                      //           presence: 'Present',
+                      //           DateId: 1,
+                      //           StudentId: 4
+                      //         }
+                      //       ])
+                      //       .then(function(attendance) {
+                      // console.log(attendance);
+
                       console.log(value);
                       db.Students
                         .findAll({
@@ -163,6 +183,14 @@ db.sequelize
                               include: [
                                 {
                                   model: db.Assignments
+                                }
+                              ]
+                            },
+                            {
+                              model: db.Attendance,
+                              include: [
+                                {
+                                  model: db.Dates
                                 }
                               ]
                             }
@@ -178,3 +206,5 @@ db.sequelize
         });
     });
   });
+// });
+// });
