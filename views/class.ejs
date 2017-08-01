@@ -28,7 +28,8 @@
         <!-- BUTTONS FOR MENU OF OPTIONS  -->
         <div class="row">
           <div class="col l3 m3 s6">
-            <a href="/class" class="waves-effect waves-light btn teacher-menu">
+            <a href="#main-mount" class="waves-effect waves-light btn teacher-menu tooltipped" data-position="bottom" data-delay="50"
+              data-tooltip="Click a student!">
             <i class="material-icons left">event_note</i>Roster</a>
           </div>
           <div class="col l3 m3 s6">
@@ -36,7 +37,7 @@
             <i class="material-icons left">contacts</i>Attendance</a>
           </div>
           <div class="col l3 m3 s6">
-            <a href="/documents" class="waves-effect waves-light btn teacher-menu">
+            <a href="#documents" class="waves-effect waves-light btn teacher-menu">
             <i class="material-icons left">attachment</i>Documents</a>
           </div>
           <div class="col l3 m3 s6">
@@ -67,7 +68,7 @@
                 <!-- BOTTOM PANELS  -->
                 <div class="row">
                   <!-- PANEL WITH DOCUMENTS -->
-                  <div class="col s6">
+                  <div class="col s6" id="documents">
                     <div class="card white">
                       <div class="card-content black-text">
                         <span class="card-title"><h5>Documents</h5></span>
@@ -87,7 +88,7 @@
                     <div class="card white">
                       <div class="card-content black-text">
                         <span class="card-title"><h5>Calendar</h5></span>
-                        <ul>
+                        <ul id="schedule">
                           <li>Test On Friday</li>
                           <li>Quiz on Tuesday</li>
                         </ul>
@@ -119,11 +120,11 @@
       <div class="modal-content">
         <div class="row center pic-row">
           <!--Student Pic-->
-          
+
         </div>
         <!--Name and grade-->
         <div class="row center name-row">
-        <!-- add student name -->
+          <!-- add student name -->
         </div>
 
         <!-- email row -->
@@ -131,12 +132,12 @@
           <!--Student email-->
         </div>
 
-     <div class="row center absent-row">
-<!-- Days Absent -->
-          
+        <div class="row center absent-row">
+          <!-- Days Absent -->
+
         </div>
         <div class="row">
-         
+
           <div class="col s6 right-align">
             <div class="row">
               <a class="waves-effect waves-light btn email-btn">Email Student</a>
@@ -260,7 +261,7 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
       </div>
     </div>
-    
+
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/assets/js/materialize.min.js"></script>

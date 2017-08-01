@@ -1,10 +1,28 @@
 .brand-logo,
 .showId,
 .showStudentName,
+#schedule,
 h4,
 h5 {
   font-family: 'Zilla Slab', serif;
 }
+
+a.brand-logo {
+  font-size: 18px;
+}
+
+.dropdown-button {
+  font-family: 'Zilla Slab', serif;
+  font-size: 18px;
+  width: 160px;
+  text-align: center;
+  margin-right: 25px;
+}
+
+#dropdown1 li {
+  text-align: center;
+}
+
 /* LANDING PAGE  */
 .home { 
   /* min-height: 800px; */
@@ -262,6 +280,7 @@ label {
 .globe {
   line-height: 50px;
   padding-bottom: 30px;
+  margin-left: 25px;
 }
 
 body {

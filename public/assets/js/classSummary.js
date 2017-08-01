@@ -57,6 +57,7 @@ $(document).ready(function() {
     id = data.id;
     $("#teacher-name").text(teacherName + "'s");
   });
+  
   // initialize materialize
   $(".modal").modal();
   $(".button-collapse ").sideNav();
@@ -164,16 +165,12 @@ $(document).on("click", ".listed-student", function() {
     var studentName = students[index].name;
     var studentEmail = students[index].email;
 
-
     // add student information to modal
     $(".pic-row").html("<img class='modal-img' src='" + imgUrl + "'>");
     $(".name-row").html("<h2>" + studentName + "</h2>");
     $(".email-row").html("<h5>" + studentEmail + "</h5>");
 
-
     console.log(studentInfo);
-
-
   });
 
   // Count absent
@@ -204,22 +201,4 @@ $(document).on("click", ".listed-student", function() {
 
   // opem modal
   $("#student-summary-modal").modal("open");
-
-
-
-
-
-
-
-  // Send email
-
-  function sendMail() {
-    var link = "mailto:me@example.com" +
-      "?cc=myCCaddress@example.com" +
-      "&subject=" + escape("This is my subject") +
-      "&body=" + escape(document.getElementById('myText').value);
-
-    window.location.href = link;
-  }
-
 });

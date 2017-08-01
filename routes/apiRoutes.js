@@ -1,5 +1,6 @@
 var db = require('../models');
 const bodyParser = require('body-parser');
+var moment = require('moment');
 
 module.exports = function(app) {
   // parse application/json
@@ -107,12 +108,21 @@ module.exports = function(app) {
 
   // Get events
   app.get('/api/events/', function(req, res) {
-    var id = req.params.id;
-    db.Cal_Events
-      .findAll({})
-      .then(function(results) {
-        res.json(results);
-      });
+      var id = req.params.id;
+      var currentDate = new Date();
+      var endDate = moment().add(7, 'days').toDate();
+      console.log(endDate);
+      db.Cal_Events
+        .findAll({
+            where: {
+              eventDate: {
+                $between: [ currentDate, endDate]
+              }
+            }
+          })
+    .then(function(results) {
+      res.json(results);
+    });
   });
 
 
@@ -123,8 +133,10 @@ app.get('/api/absent/:id', function(req, res) {
   db.Attendance
 
     .count({
-      where: { StudentId: id,
-      presence: 'Absent' }
+      where: {
+        StudentId: id,
+        presence: 'Absent'
+      }
     })
     .then(function(results) {
       res.json(results);
