@@ -298,6 +298,10 @@ main {
   max-width: 300px;
 }
 
+.right-align{
+  margin-left: 10%;
+}
+
 /* media tags */
 
 /* @media screen and (min-width: 1645px)s {
