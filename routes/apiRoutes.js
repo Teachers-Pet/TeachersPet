@@ -23,12 +23,11 @@ module.exports = function(app) {
     });
   });
 
-   //route for retrieving all students in general
+  //route for retrieving all students in general
   app.get('/api/students/', function(req, res) {
     var id = req.params.id;
     db.Students
-      .findAll({
-      })
+      .findAll({})
       .then(function(results) {
         res.json(results);
       });
@@ -57,59 +56,78 @@ module.exports = function(app) {
   app.get('/api/attendance', function(req, res) {
     db.Dates
       .findAll({
-        include: [
-          {
-            model: db.Attendance,
-            include: [
-              {
-                model: db.Students
-              }
-            ]
-          }
-        ]
+        include: [{
+          model: db.Attendance,
+          include: [{
+            model: db.Students
+          }]
+        }]
       })
       .then(function(currDate) {
         res.json(currDate);
       });
   });
 
+  // attendance
   app.post('/api/attendance', function(req, res) {
-    /* 
-          JSON sent from client should look like: 
-              [
-                {
-                  attendanceDate: "2017-07-31"
-                }, 
-                {
-                  studentId: req.body.StudentId, 
-                  presence: ["Present", "Present-Tardy", "Absent"]
-                }, 
-                {
-                  studentId: req.body.StudentId, 
-                  presence: ["Present", "Present-Tardy", "Absent"]
-                }
-              ]
-    */
     var currAttendance = req.body;
+    console.log(req.body);
     var attendanceDate = currAttendance[0].attendanceDate;
+    console.log(attendanceDate);
+    var studentData = currAttendance[1];
     db.Dates
       .create({
         schoolDates: attendanceDate
       })
       .then(function(savedDate) {
-        for (var i = 1; i < currAttendance.length; i++) {
+        console.log(savedDate);
+        for (var i = 0; i < studentData.length; i++) {
           db.Attendance
             .create({
               DateId: savedDate.id,
-              StudentId: currAttendance[i].StudentId,
-              presence: currAttendance[i].presence
+              StudentId: studentData[i].StudentId,
+              presence: studentData[i].presence
             })
             .then(function(createdAttendance) {
               console.log(createdAttendance.dataValues);
-              updatedAttendance.push(createdAttendance.dataValues);
             });
         }
         res.send(`sucessfully updated attendance for students for ${currAttendance[0].attendanceDate}`);
       });
   });
+
+
+  // Post event
+  app.post('/api/events', function(req, res) {
+    db.Cal_Events.create(req.body).then(function(events) {
+      res.json(events);
+    });
+  });
+
+
+  // Get events
+  app.get('/api/events/', function(req, res) {
+    var id = req.params.id;
+    db.Cal_Events
+      .findAll({})
+      .then(function(results) {
+        res.json(results);
+      });
+  });
+
+
+
+// Count Absent
+app.get('/api/absent/:id', function(req, res) {
+  var id = req.params.id;
+  db.Attendance
+
+    .count({
+      where: { StudentId: id,
+      presence: 'Absent' }
+    })
+    .then(function(results) {
+      res.json(results);
+    });
+});
 };

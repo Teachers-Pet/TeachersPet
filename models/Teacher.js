@@ -25,6 +25,10 @@ module.exports = function(sequelize, DataTypes) {
     Teachers.hasMany(models.Students, {
       onDelete: 'cascade'
     });
+
+    Teachers.hasMany(models.Cal_Events, {
+      onDelete: 'cascade'
+    });
   };
   return Teachers;
 };

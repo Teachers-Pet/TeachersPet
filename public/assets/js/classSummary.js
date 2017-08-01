@@ -28,40 +28,6 @@ $(document).ready(function() {
     var eventDate = $("#event-date").val().trim();
   });
 
-  //---------pop-up modal with student summary---------------
-  $(document).on("click", ".listed-student", function() {
-    var thisId = $(this).attr("id");
-    console.log(thisId);
-
-    // define index of student;
-    var index = thisId - 1;
-
-    // access table of ALL students
-    $.ajax({
-      url: "/api/students/",
-      method: "GET"
-    }).done(function(data) {
-      console.log(data);
-      console.log(index);
-
-      var students = data;
-      var imgUrl = students[index].imgUrl;
-      var studentName = students[index].name;
-      var studentEmail = students[index].email;
-
-      // add student information to modal
-      $(".pic-row").html("<img class='modal-img' src='" + imgUrl + "'>");
-      $(".name-row").html("<h2>" + studentName + "</h2>");
-      $(".email-row").html("<h5>" + studentEmail + "</h5>");
-
-      console.log(studentInfo);
-    });
-    // opem modal
-    $("#student-summary-modal").modal("open");
-  });
-
-  // --------end of pop-up modal with stuent summary code-----------
-
   //-------add student button-----------
   $("#add-student-btn").on("click", function(event) {
     var newStudent = {
@@ -154,4 +120,73 @@ $(document).ready(function() {
       $("#append-urls-here").append(newDocument);
     }
   });
+
+  // --------- add event------------
+  $("#submit-event-btn").on("click", function(event) {
+    var newEvent = {
+      eventName: $("#event-name").val().trim(),
+      eventDate: $("#event-date").val().trim(),
+      TeacherId: id
+    };
+    // send an AJAX POST-request with jQuery
+    $.post("/api/events", newEvent)
+      // on success, run this callback
+      .done(function(data) {
+        alert("Adding event...");
+      });
+
+    // empty each input box by replacing the value with an empty string
+    var theDate = $("#event-date").val().trim();
+    console.log("this is the date" + theDate);
+
+    alert(theDate);
+  });
+});
+
+//---------pop-up modal with student summary---------------
+$(document).on("click", ".listed-student", function() {
+  var thisId = $(this).attr("id");
+  console.log(thisId);
+
+  // define index of student;
+  var index = thisId - 1;
+
+  // access table of ALL students
+  $.ajax({
+    url: "/api/students/",
+    method: "GET"
+  }).done(function(data) {
+    console.log(data);
+    console.log(index);
+
+    var students = data;
+    var imgUrl = students[index].imgUrl;
+    var studentName = students[index].name;
+    var studentEmail = students[index].email;
+
+
+    // add student information to modal
+    $(".pic-row").html("<img class='modal-img' src='" + imgUrl + "'>");
+    $(".name-row").html("<h2>" + studentName + "</h2>");
+    $(".email-row").html("<h5>" + studentEmail + "</h5>");
+
+
+    console.log(studentInfo);
+
+
+  });
+
+  // Count absent
+
+  var id = thisId;
+  $.get(`/api/absent/${id}`).then(function(data) {
+    console.log(data);
+    // code to show data on the page
+
+    $(".absent-row").html("<h5> Days Absent: " + data + "</h5>");
+
+  });
+
+  // opem modal
+  $("#student-summary-modal").modal("open");
 });

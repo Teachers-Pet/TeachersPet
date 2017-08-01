@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15, // Creates a dropdown of 15 years to control year
-      format: 'dd-mm-yyyy',
+      format: 'yyyy-mm-dd',
       today: 'Today',
       clear: 'Clear',
       close: 'Ok',
@@ -31,11 +31,11 @@ $(document).ready(function() {
         var studentId = data[i]['id'];
         var listItem = $(`
         <li class='collection-item'>
-        <p>Student Id: ${studentId} ${studentName}</p>
+        <p id=${studentId}>Student Id: ${studentId} ${studentName}</p>
         <form>
-          ${generateDropdown(studentName, studentId, choices[0])}
-          ${generateDropdown(studentName, studentId + 1, choices[1])}
-          ${generateDropdown(studentName, studentId + 2, choices[2])}
+          ${generateDropdown(studentId, studentName, studentName, choices[0])}
+          ${generateDropdown(studentId, studentName, studentName + 1, choices[1])}
+          ${generateDropdown(studentId, studentName, studentName + 2, choices[2])}
         </form>
         </li>`);
         $('#append-here').append(listItem);
@@ -43,14 +43,47 @@ $(document).ready(function() {
     });
   }
 
-  function generateDropdown(studentName, inputId, choices) {
+  function generateDropdown(studentId, studentName, inputId, choices) {
+    studentName = studentName.replace(/ /g, '');
+    inputId = inputId.replace(/ /g, '');
     var dropDown = `
       <p> 
-        <input class='with-gap' name=${studentName} id=${inputId} type='radio' value=${choices} />
+        <input data-student-id=${studentId} class='with-gap students' name=${studentName} id=${inputId} type='radio' value=${choices} />
         <label for=${inputId}> ${choices}</label>
       </p>`;
     return dropDown;
   }
+
+  function submitAttendance() {
+    var submitAttendanceData = [];
+    var attendanceDate = {
+      attendanceDate: $('#attendance-date').val()
+    };
+    console.log(attendanceDate);
+    var studentValues = $.map($('input:radio:checked'), function(elem, i) {
+      var studentId = $(elem).data('student-id');
+      var presence = $(elem).val();
+      return {
+        StudentId: studentId,
+        presence: presence
+      };
+    });
+    submitAttendanceData.push(attendanceDate);
+    submitAttendanceData.push(studentValues);
+    console.log(submitAttendanceData);
+
+    $.ajax({
+      type: 'post',
+      url: '/api/attendance',
+      data: JSON.stringify(submitAttendanceData),
+      contentType: 'application/json',
+      dataType: 'json'
+    }).then(function(response) {
+      console.log(response);
+    });
+  }
+
+  $('#submit-attendance-btn').on('click', submitAttendance);
 
   datePickerInit();
   getTeacher();
