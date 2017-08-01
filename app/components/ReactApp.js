@@ -26,21 +26,9 @@ var ReactApp = React.createFactory(
               <ul className="collection">
                 {this.state.students.map((students, i) => {
                   return (
-                    <li
-                      key={i}
-                      className="collection-item avatar"
-                    >
-                      <a
-                        key={`${students.name + i}`}
-                        id={students.id}
-                        className = "listed-student"
-                      >
-                        <img src={students.imgUrl} alt="" className="circle" />
-                        <p key={students.name} className="name">
-                          {students.name}
-                        </p>
-                      </a>
-                    </li>
+                    <a href="#student-summary-modal" id={students.id} key={i} className="collection-item name listed-student">
+                <span className="showId">{students.id}</span> | <span className="showStudentName">{students.name}</span>
+              </a>
                   );
                 })}
               </ul>

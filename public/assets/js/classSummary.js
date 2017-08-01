@@ -181,12 +181,45 @@ $(document).on("click", ".listed-student", function() {
   var id = thisId;
   $.get(`/api/absent/${id}`).then(function(data) {
     console.log(data);
-    // code to show data on the page
 
+    // code to show data on the page
     $(".absent-row").html("<h5> Days Absent: " + data + "</h5>");
+
+
+    // grabbing email info
+    var email = $(".email-row").text();
+    var name = $(".name-row").text();
+    console.log(email);
+
+    // email student after clicking "email-btn"
+    $(document).on("click", ".email-btn", function() {
+      var link = "mailto:" + email +
+        "?Subject=" + "Class Notice for " + name +
+        "&body=" + "Hi " + name + ",";
+
+      window.location.href = link;
+    })
 
   });
 
   // opem modal
   $("#student-summary-modal").modal("open");
+
+
+
+
+
+
+
+  // Send email
+
+  function sendMail() {
+    var link = "mailto:me@example.com" +
+      "?cc=myCCaddress@example.com" +
+      "&subject=" + escape("This is my subject") +
+      "&body=" + escape(document.getElementById('myText').value);
+
+    window.location.href = link;
+  }
+
 });

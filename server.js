@@ -1,18 +1,18 @@
-"use strict";
-const express = require("express");
-const path = require("path");
-const logger = require("morgan");
-const bodyParser = require("body-parser");
+'use strict';
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 //import bcrypt (which we need to secure seed data password)
-var bCrypt = require("bcrypt-nodejs");
+var bCrypt = require('bcrypt-nodejs');
 // Authentication dependencies
-var passport = require("passport");
-var session = require("express-session");
-// const fileUpload = require('express-fileupload');
-require("node-jsx").install();
+var passport = require('passport');
+var session = require('express-session');
+const fileUpload = require('express-fileupload');
+require('node-jsx').install();
 
 // Models
-var db = require("./models");
+var db = require('./models');
 
 // Initialize app method
 let app = express();
@@ -21,15 +21,15 @@ let app = express();
 const PORT = process.env.PORT || 8080;
 
 //Static directory
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.set("views", __dirname + "/views");
-app.set("view engine", "ejs");
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 // For Passport
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true
   })
@@ -50,13 +50,13 @@ app.use(bodyParser.json());
 //=================================================
 
 // Authentication routes
-require("./routes/authRoutes.js")(app, passport);
+require('./routes/authRoutes.js')(app, passport);
 // load passport strategies
-require("./config/passport/passport.js")(passport, db.Teachers);
+require('./config/passport/passport.js')(passport, db.Teachers);
 //load amazon web service route
 // require('./routes/upload')(app);
 // load api routes
-require("./routes/apiRoutes")(app);
+require('./routes/apiRoutes')(app);
 
 // DEV ONLY!!:
 // use code below to force true if prevented by sequelize error
@@ -74,13 +74,13 @@ db.sequelize
   })
   .then(function() {
     app.listen(PORT, function() {
-      console.log("App listening on PORT " + PORT);
+      console.log('App listening on PORT ' + PORT);
       // generate hashed password for seed data for testing purposes
-      var jenPass = bCrypt.hashSync("testpass", bCrypt.genSaltSync(8), null);
+      var jenPass = bCrypt.hashSync('testpass', bCrypt.genSaltSync(8), null);
       db.Teachers
         .create({
-          name: "Jen",
-          email: "jen@testteacher.com",
+          name: 'Jen',
+          email: 'jen@testteacher.com',
           password: jenPass
         })
         .then(function(teacher) {
@@ -88,31 +88,30 @@ db.sequelize
           db.Students
             .bulkCreate([
               {
-                name: "Eyad Qassem",
-                email: "eyad@unc.edu",
+                name: 'Eyad Qassem',
+                email: 'eyad@unc.edu',
                 imgUrl:
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png',
                 TeacherId: 1
               },
               {
-                name: "Henrietta Sharpe",
-                TeacherId: 1,
+                name: 'Henrietta Sharpe',
+                email: 'henrietta@unc.edu',
                 imgUrl:
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
-                email: "henrietta@yahoo.com"
-              },
-              {
-                name: "India Evans",
-                email: "india@unc.edu",
-                imgUrl:
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png',
                 TeacherId: 1
               },
               {
-                name: "Brittni Wright",
-                email: "india@unc.edu",
+                name: 'India Evans',
+                email: 'india@unc.edu',
                 imgUrl:
-                  "http://img.usmagazine.com/social/beyonce-d5c55b42-2de9-48f4-84c4-bbd89bb622c8.jpg",
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png',
+                TeacherId: 1
+              },
+              {
+                name: 'Brittni Wright',
+                email: 'india@unc.edu',
+                imgUrl: 'http://img.usmagazine.com/social/beyonce-d5c55b42-2de9-48f4-84c4-bbd89bb622c8.jpg',
                 TeacherId: 1
               }
             ])
@@ -121,7 +120,7 @@ db.sequelize
               db.Assignments
                 .bulkCreate([
                   {
-                    assignName: "TechnicalInterview"
+                    assignName: 'TechnicalInterview'
                   }
                 ])
                 .then(function(student) {
