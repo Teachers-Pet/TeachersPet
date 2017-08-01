@@ -1,8 +1,8 @@
-'use strict';
-const express = require('express');
-const path = require('path');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
+"use strict";
+const express = require("express");
+const path = require("path");
+const logger = require("morgan");
+const bodyParser = require("body-parser");
 //import bcrypt (which we need to secure seed data password)
 var bCrypt = require("bcrypt-nodejs");
 // Authentication dependencies
@@ -88,25 +88,31 @@ db.sequelize
           db.Students
             .bulkCreate([
               {
-                name: 'Eyad Qassem',
-                email: 'eyad@unc.edu',
+                name: "Eyad Qassem",
+                email: "eyad@unc.edu",
                 imgUrl:
                   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
                 TeacherId: 1
               },
               {
-                name: 'Henrietta Sharpe',
-                TeacherId: 1
-                name: 'India Evans',
-                email: 'india@unc.edu',
+                name: "Henrietta Sharpe",
+                TeacherId: 1,
+                imgUrl:
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
+                email: "henrietta@yahoo.com"
+              },
+              {
+                name: "India Evans",
+                email: "india@unc.edu",
                 imgUrl:
                   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png",
                 TeacherId: 1
               },
               {
-                name: 'Brittni Wright',
-                email: 'india@unc.edu',
-                imgUrl: 'http://img.usmagazine.com/social/beyonce-d5c55b42-2de9-48f4-84c4-bbd89bb622c8.jpg',
+                name: "Brittni Wright",
+                email: "india@unc.edu",
+                imgUrl:
+                  "http://img.usmagazine.com/social/beyonce-d5c55b42-2de9-48f4-84c4-bbd89bb622c8.jpg",
                 TeacherId: 1
               }
             ])
