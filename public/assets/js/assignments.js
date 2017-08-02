@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // initialize modals
-  $('.modal').modal();
-  $('select').material_select();
+  $(".modal").modal();
+  $("select").material_select();
   // show already saved assignments on the page
   function listDisplay(data) {
     var divRow;
@@ -15,31 +15,31 @@ $(document).ready(function() {
       divCol1 = $("<div class='col s6'>");
       divCol2 = $("<div class='col s6'>");
       icon = $("<i class='right tiny material-icons'>assignment_turned_in</i>");
-      listItem = $('<li>');
+      listItem = $("<li>");
 
       divCol1.text(data[i].assignName);
       divCol2.append(icon);
       divRow.append(divCol1, divCol2);
       listItem.append(divRow);
 
-      $('#allAssignments').append(listItem);
+      $("#allAssignments").append(listItem);
     }
   }
   // get and display assignments from the database
-  $.get('/api/assignments', listDisplay);
+  $.get("/api/assignments", listDisplay);
 
   // Submits new assignment to the database
   function saveAssignment(assignment) {
-    $.post('/api/assignments', assignment, function() {});
-    location.href = '/assignments';
+    $.post("/api/assignments", assignment, function() {});
+    location.href = "/assignments";
   }
 
-  $('#save-assignment').on('click', function(event) {
+  $("#save-assignment").on("click", function(event) {
     event.preventDefault();
-    var name = $('#assignment-name').val().trim();
+    var name = $("#assignment-name").val().trim();
     // checks to make sure form fields are not empty
     if (!name) {
-      $('.alertUser').text('Please enter an assignment name.');
+      $(".alertUser").text("Please enter an assignment name.");
       return;
     }
     //Create a new object to go into the database

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
@@ -27,9 +28,7 @@
         <!-- BUTTONS FOR MENU OF OPTIONS  -->
         <div class="row">
           <div class="col l3 m3 s6">
-            <a href="#main-mount" class="waves-effect waves-light btn teacher-menu tooltipped" 
-            data-position="bottom" data-delay="50"
-            data-tooltip="Click a student!">
+            <a href="#main-mount" class="waves-effect waves-light btn teacher-menu tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click a student!">
             <i class="material-icons left">event_note</i>Roster</a>
           </div>
           <div class="col l3 m3 s6">
@@ -45,52 +44,55 @@
             <i class="material-icons left">assignment_turned_in</i>Assignments</a>
           </div>
         </div>
-
         <!-- ALL STUDENTS LISTED HERE  -->
-        <!-- React Component -->
-        <div id='main-mount'>
-          <div>
-            <%- reactOutput -%>
-          </div>
-        </div>
-      
-      <!-- BOTTOM PANELS  -->
-      <div class="row">
-        <!-- PANEL WITH DOCUMENTS -->
-        <div class="col s6" id="documents">
-          <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title"><h5>Documents</h5></span>
-              <ul id='append-urls-here'>
-                         
-              </ul>
-            </div>
-            <div class="card-action">
-              <a href="#document-modal">Upload a Document</a>
-              <a href="#document-modal" class="right">
+        <div class="row">
+          <div class="col s12 student-list-pnl">
+            <div class="card-panel white">
+              <div class="card-content black-text">
+                <!-- React Component -->
+                <div id='main-mount'>
+                  <div>
+                    <%- reactOutput -%>
+                  </div>
+                </div>
+                <!-- BOTTOM PANELS  -->
+                <div class="row">
+                  <!-- PANEL WITH DOCUMENTS -->
+                  <div class="col s6" id="documents">
+                    <div class="card white">
+                      <div class="card-content black-text">
+                        <span class="card-title"><h5>Documents</h5></span>
+                        <ul id='append-urls-here'>
+                        </ul>
+                      </div>
+                      <div class="card-action">
+                        <a href="#document-modal">Upload a Document</a>
+                        <a href="#document-modal" class="right">
               <i class="material-icons">add_circle</i></a>
-            </div>
-          </div>
-        </div>
-        <!--PANEL WITH EVENTS / ANNOUNCEMENTS  -->
-        <div class="col s6">
-          <div class="card white">
-            <div class="card-content black-text">
-              <span class="card-title"><h5>Calendar</h5></span>
-              <ul id="schedule">
-                <li>Test On Friday</li>
-                <li>Quiz on Tuesday</li>
-              </ul>
-            </div>
-            <div class="card-action">
-              <a href="#add-event-modal">Add an Event</a>
-              <a href="#add-event-modal" class="right">
+                      </div>
+                    </div>
+                  </div>
+                  <!--PANEL WITH EVENTS / ANNOUNCEMENTS  -->
+                  <div class="col s6">
+                    <div class="card white">
+                      <div class="card-content black-text">
+                        <span class="card-title"><h5>Calendar</h5></span>
+                        <ul id="schedule">
+                          <li>Test On Friday</li>
+                          <li>Quiz on Tuesday</li>
+                        </ul>
+                      </div>
+                      <div class="card-action">
+                        <a href="#add-event-modal">Add an Event</a>
+                        <a href="#add-event-modal" class="right">
               <i class="material-icons">add_circle</i></a>
-            </div>
-          </div>
-        </div>
-      </div><!-- end of row -->
-      </div><!-- end of container -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end of row -->
+              </div>
+              <!-- end of container -->
     </main>
     <!-- Footer -->
     <footer class="page-footer orange">
@@ -104,36 +106,35 @@
     <!-- STUDENT SUMMARY modal -->
     <div id="student-summary-modal" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <div class="row center">
-          <!--Student Pic-->
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/150px-Placeholder_no_text.svg.png"
-            alt="">
+        <!--Student Pic-->
+        <div class="row center pic-row">
         </div>
         <!--Name and grade-->
-        <div class="row center">
-          <h4>Student Name</h4>
+        <div class="row center name-row">
         </div>
         <div class="row">
-          <div class="col s6">
-            <p>Cumulative Grade: 92</p>
-            <p>Email: henrietta@yahoo.com</p>
-            <p>Number of Absences: 2</p>
+          <div class="col right-align s6">
+            <!-- email row -->
+            <div class="row email-row">
+            </div>
+            <!-- Days Absent -->
+            <div class="row absent-row">
+            </div>
           </div>
-          <div class="col s6 right-align">
+          <div class="col s6">
             <div class="row">
-              <a href="/api/student/email" class="waves-effect waves-light btn ">Email Student</a>
+              <a class="waves-effect waves-light btn email-btn right-align"">Email Student</a>
             </div>
             <div class="row">
-              <a href="/api/student/grade" class="waves-effect waves-light btn ">Upload Grade</a>
+              <a href="/api/student/grade" class="waves-effect waves-light btn right-align">Upload Grade</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer right">
+      <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
       </div>
     </div>
-
     <!-- Modal for Adding Student -->
     <div id="add-student-modal" class="modal modal-fixed-footer">
       <div class="modal-content center">
@@ -174,7 +175,6 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
       </div>
     </div>
-
     <!-- Modal for Adding Event -->
     <div id="add-event-modal" class="modal modal-fixed-footer">
       <div class="modal-content center">
@@ -196,12 +196,11 @@
                 <label for="event-date">When:</label>
               </div>
             </div>
-
             <!-- FORM SUBMIT BUTTON-->
             <div class="col s2 right-align">
-              <button id="submit-event-btn" class="btn waves-effect waves-light blue lighten-1" type="submit" value="Sign Up">Add
-                        <i class="material-icons right">input</i>
-                      </button>
+              <button id="submit-event-btn" class="btn waves-effect waves-light blue lighten-1" type="submit" value="submit event">Add
+                <i class="material-icons right">input</i>
+              </button>
             </div>
           </form>
         </div>
@@ -210,7 +209,6 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
       </div>
     </div>
-
     <!-- Modal for Uploading Documents -->
     <div id="document-modal" class="modal modal-fixed-footer">
       <div class="modal-content center">
@@ -242,12 +240,11 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
       </div>
     </div>
-    
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/assets/js/materialize.min.js"></script>
     <script src='/assets/js/classSummary.js'></script>
-    <script src='/assets/js/main.js'></script>
+    <script src='/assets/js/bundle.js'></script>
 </body>
-</html>
 
+</html>
