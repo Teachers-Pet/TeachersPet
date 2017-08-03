@@ -11,6 +11,15 @@ h5 {
 .page-footer {
   background-color: #99badd;
 }
+a.footerWords {
+  color: white;
+   font-family: 'Zilla Slab', serif;
+}
+.page-footer {
+color: white;
+font: 10px;
+}
+
 
 footer {
   font-size: 12px;
